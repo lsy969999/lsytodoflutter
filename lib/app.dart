@@ -29,12 +29,12 @@ class App extends StatelessWidget {
       show
           ? Banner(
               child: child,
-              location: BannerLocation.topStart,
+              location: BannerLocation.bottomEnd,
               message: F.name,
               color: Colors.green.withOpacity(0.6),
               textStyle: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 12.0,
+                  fontSize: 8.0,
                   letterSpacing: 1.0),
               textDirection: TextDirection.ltr,
             )

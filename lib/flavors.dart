@@ -21,4 +21,17 @@ class F {
         return 'title';
     }
   }
+
+  static String get webUrl {
+    switch (appFlavor) {
+      case Flavor.lsytodo:
+        return 'http://192.168.25.55:3000/';
+      case Flavor.lsytodo_dev:
+        return 'https://lsytodo.web.app/';
+      case Flavor.lsytodo_local:
+        return 'https://lsytodo.web.app/';
+      default:
+        return 'https://lsytodo.web.app/';
+    }
+  }
 }
