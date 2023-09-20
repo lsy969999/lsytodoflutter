@@ -1,0 +1,6 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_lsyTODO_DEV.dart
+ASSET_PREFIX=lsyTODO_DEV
+BUNDLE_NAME=lsyTODO_DEV
+BUNDLE_DISPLAY_NAME=lsyTODO_DEV

@@ -1,0 +1,25 @@
+flavors:
+  lsyTODO:
+    app:
+      name: "lsyTODO"
+
+    android:
+      applicationId: "com.example.lsytodo"  
+    ios:
+      bundleId: "com.example.lsytodo"
+  lsyTODO_DEV:
+    app:
+      name: "lsyTODO_DEV"
+  
+    android:
+      applicationId: "com.example.lsytodo.dev"
+    ios:
+      bundleId: "com.example.lsytodo.dev"
+  lsyTODO_LOCAL:
+    app:
+      name: "lsyTODO_LOCAL"
+  
+    android:
+      applicationId: "com.example.lsytodo.local"
+    ios:
+      bundleId: "com.example.lsytodo.local"
