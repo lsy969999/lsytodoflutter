@@ -1,24 +1,53 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:lsy_todo/flavors.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
-var controller = WebViewController()
-  ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  ..setBackgroundColor(const Color(0x00000000))
-  ..setNavigationDelegate(
-    NavigationDelegate(
-      onProgress: (int progress) {
-        // Update loading bar.
+class MyWebView extends StatefulWidget {
+  const MyWebView({super.key});
+
+  @override
+  State<MyWebView> createState() => _MyWebViewState();
+}
+
+class _MyWebViewState extends State<MyWebView> {
+  final GlobalKey webViewKey = GlobalKey();
+
+  InAppWebViewController? webViewController;
+
+  InAppWebViewSettings settings = InAppWebViewSettings(
+    useShouldOverrideUrlLoading: true,
+    mediaPlaybackRequiresUserGesture: false,
+    allowsInlineMediaPlayback: true,
+    iframeAllowFullscreen: true,
+    isInspectable: true,
+  );
+
+  String url = "";
+  double progress = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return InAppWebView(
+      key: webViewKey,
+      initialSettings: settings,
+      initialUrlRequest: URLRequest(url: WebUri(F.webUrl)),
+      onWebViewCreated: (controller) => {webViewController = controller},
+      shouldOverrideUrlLoading: (controller, navigationAction) async {
+        return NavigationActionPolicy.ALLOW;
       },
-      onPageStarted: (String url) {},
-      onPageFinished: (String url) {},
-      onWebResourceError: (WebResourceError error) {},
-      onNavigationRequest: (NavigationRequest request) {
-        // if (request.url.startsWith('https://www.youtube.com/')) {
-        //   return NavigationDecision.prevent;
-        // }
-        return NavigationDecision.navigate;
-      },
-    ),
-  )
-  ..loadRequest(Uri.parse(F.webUrl));
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+}
