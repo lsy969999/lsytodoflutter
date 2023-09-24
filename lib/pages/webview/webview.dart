@@ -5,6 +5,7 @@ import 'package:lsy_todo/flavors.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class MyWebView extends StatefulWidget {
   const MyWebView({super.key});
@@ -19,14 +20,6 @@ class _MyWebViewState extends State<MyWebView> {
 
   InAppWebViewController? webViewController;
 
-  InAppWebViewSettings settings = InAppWebViewSettings(
-    useShouldOverrideUrlLoading: true,
-    mediaPlaybackRequiresUserGesture: false,
-    allowsInlineMediaPlayback: true,
-    iframeAllowFullscreen: true,
-    isInspectable: true,
-  );
-
   String url = "";
   double progress = 0;
 
@@ -34,7 +27,6 @@ class _MyWebViewState extends State<MyWebView> {
   Widget build(BuildContext context) {
     return InAppWebView(
       key: webViewKey,
-      initialSettings: settings,
       initialUrlRequest: URLRequest(url: WebUri(F.webUrl)),
       onWebViewCreated: (controller) {
         controller.addJavaScriptHandler(
@@ -60,7 +52,53 @@ class _MyWebViewState extends State<MyWebView> {
               print(result);
               return result;
             });
-        webViewController = controller;
+        controller.addJavaScriptHandler(
+            handlerName: 'appInfo',
+            callback: (args) async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String appName = packageInfo.appName;
+              String packageName = packageInfo.packageName;
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+              return {
+                'appName': appName,
+                'packageName': packageName,
+                'version': version,
+                'buildNumber': buildNumber,
+              };
+            });
+        controller.getSettings().then((value) {
+          // print('useragent: ${value?.userAgent}');
+          controller.setSettings(
+              settings: InAppWebViewSettings(
+            useShouldOverrideUrlLoading: true,
+            mediaPlaybackRequiresUserGesture: false,
+            allowsInlineMediaPlayback: true,
+            iframeAllowFullscreen: true,
+            isInspectable: true,
+            javaScriptEnabled: true,
+          ));
+          webViewController = controller;
+        });
+        controller.getUrl().then((value) async {
+          // print("getUrl: ${value}");
+          if (value == null) {
+            return;
+          }
+
+          // get the CookieManager instance
+          CookieManager cookieManager = CookieManager.instance();
+
+          // set the expiration date for the cookie in milliseconds
+          // final expiresDate =
+          //     DateTime.now().add(Duration(days: 3)).millisecondsSinceEpoch;
+          await cookieManager.setCookie(
+            url: value,
+            name: "myCookie",
+            value: "myValue",
+          );
+        });
       },
       shouldOverrideUrlLoading: (controller, navigationAction) async {
         return NavigationActionPolicy.ALLOW;

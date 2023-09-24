@@ -12,7 +12,7 @@ class MyHomePage extends StatelessWidget {
         body: Center(
       child: SafeArea(
           child: Column(
-        children: [Expanded(child: MyWebView()), Expanded(child: MyWidget())],
+        children: [Expanded(child: MyWebView())],
       )),
     ));
   }
