@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:lsy_todo/flavors.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyWebView extends StatefulWidget {
   const MyWebView({super.key});
@@ -11,6 +14,7 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
+  static const platform = MethodChannel('samples.flutter.lsytodo');
   final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController? webViewController;
@@ -32,7 +36,32 @@ class _MyWebViewState extends State<MyWebView> {
       key: webViewKey,
       initialSettings: settings,
       initialUrlRequest: URLRequest(url: WebUri(F.webUrl)),
-      onWebViewCreated: (controller) => {webViewController = controller},
+      onWebViewCreated: (controller) {
+        controller.addJavaScriptHandler(
+            handlerName: 'handlerName1',
+            callback: (args) async {
+              var result = await platform.invokeMethod('channelTest');
+              print(result);
+              return {result: result};
+            });
+        controller.addJavaScriptHandler(
+            handlerName: 'handlerName2',
+            callback: (args) {
+              print(args);
+              return "hi";
+            });
+        controller.addJavaScriptHandler(
+            handlerName: 'handlerName3',
+            callback: (args) async {
+              var a = args[0];
+              var result = await platform
+                  .invokeMethod('channelTestArg', {"arg1": "$a arg1!!!"});
+              print(args);
+              print(result);
+              return result;
+            });
+        webViewController = controller;
+      },
       shouldOverrideUrlLoading: (controller, navigationAction) async {
         return NavigationActionPolicy.ALLOW;
       },
