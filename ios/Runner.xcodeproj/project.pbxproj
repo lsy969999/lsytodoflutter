@@ -20,6 +20,8 @@
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		38F9F3A976D6F25EEFF2742B /* lsyTODOProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E15658B47E006B4F9049491B /* lsyTODOProfile.xcconfig */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		3D9208E52AC0335C00DA2D6D /* FLNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9208E42AC0335C00DA2D6D /* FLNativeView.swift */; };
+		3D9208E72AC0344300DA2D6D /* FLNativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9208E62AC0344300DA2D6D /* FLNativeViewFactory.swift */; };
 		457FF86B90D0EE03F1BDB9E5 /* lsyTODO_DEVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACCB283C22D2911D5B9B7063 /* lsyTODO_DEVLaunchScreen.storyboard */; };
 		4CB0E9609FE89F0B549CCCAA /* bananaDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DAA45D255513352754F475B3 /* bananaDebug.xcconfig */; };
 		570F8E5B8D13828A6E3269C8 /* lsyTODODebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AAA95656F77131E057560374 /* lsyTODODebug.xcconfig */; };
@@ -94,6 +96,8 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3B8FD569C2945C4F69CBD87D /* lsyTODO-LOCALDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "lsyTODO-LOCALDebug.xcconfig"; path = "Flutter/lsyTODO-LOCALDebug.xcconfig"; sourceTree = "<group>"; };
 		3D383E8540263972FDA155BC /* Pods-Runner.profile-lsytodo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-lsytodo.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-lsytodo.xcconfig"; sourceTree = "<group>"; };
+		3D9208E42AC0335C00DA2D6D /* FLNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLNativeView.swift; sourceTree = "<group>"; };
+		3D9208E62AC0344300DA2D6D /* FLNativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLNativeViewFactory.swift; sourceTree = "<group>"; };
 		3D9ED9E6B314237BAAC21A2F /* Pods-RunnerTests.release-lsytodo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-lsytodo.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-lsytodo.xcconfig"; sourceTree = "<group>"; };
 		3E427E1D96CE753DB1A6D65B /* Pods-RunnerTests.debug-banana.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-banana.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-banana.xcconfig"; sourceTree = "<group>"; };
 		3E97CB1BAF2E742AB0F48AF5 /* Pods-RunnerTests.profile-lsytodo_local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-lsytodo_local.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-lsytodo_local.xcconfig"; sourceTree = "<group>"; };
@@ -319,6 +323,8 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				3D9208E42AC0335C00DA2D6D /* FLNativeView.swift */,
+				3D9208E62AC0344300DA2D6D /* FLNativeViewFactory.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -572,7 +578,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9208E72AC0344300DA2D6D /* FLNativeViewFactory.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				3D9208E52AC0335C00DA2D6D /* FLNativeView.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

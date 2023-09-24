@@ -23,9 +23,20 @@ import Flutter
           default:
               result(FlutterMethodNotImplemented)
           }
-          
+
       })
-      
+      weak var registrar = self.registrar(forPlugin: "plugin-name")
+      let factory = FLNativeViewFactory(messenger: registrar!.messenger())
+      self.registrar(forPlugin: "<plugin-name>")!.register(
+          factory,
+          withId: "<platform-view-type>")
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
+
+//class FLPlugin: NSObject, FlutterPlugin {
+//    public static func register(with registrar: FlutterPluginRegistrar) {
+//        let factory = FLNativeViewFactory(messenger: registrar.messenger())
+//        registrar.register(factory, withId: "<platform-view-type>")
+//    }
+//}

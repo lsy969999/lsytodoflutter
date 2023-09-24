@@ -22,5 +22,10 @@ class MainActivity: FlutterActivity() {
             }
 
         }
+
+        flutterEngine
+                .platformViewsController
+                .registry
+                .registerViewFactory("<platform-view-type>", NativeViewFactory())
     }
 }
